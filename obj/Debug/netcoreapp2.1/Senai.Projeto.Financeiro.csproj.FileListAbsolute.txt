@@ -1,0 +1,22 @@
+C:\Users\47326175810\Senai.Projeto.Financeiro\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.deps.json
+C:\Users\47326175810\Senai.Projeto.Financeiro\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.runtimeconfig.json
+C:\Users\47326175810\Senai.Projeto.Financeiro\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.runtimeconfig.dev.json
+C:\Users\47326175810\Senai.Projeto.Financeiro\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.dll
+C:\Users\47326175810\Senai.Projeto.Financeiro\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.pdb
+C:\Users\47326175810\Senai.Projeto.Financeiro\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.csprojAssemblyReference.cache
+C:\Users\47326175810\Senai.Projeto.Financeiro\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.csproj.CoreCompileInputs.cache
+C:\Users\47326175810\Senai.Projeto.Financeiro\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.AssemblyInfoInputs.cache
+C:\Users\47326175810\Senai.Projeto.Financeiro\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.AssemblyInfo.cs
+C:\Users\47326175810\Senai.Projeto.Financeiro\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.dll
+C:\Users\47326175810\Senai.Projeto.Financeiro\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.pdb
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.deps.json
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.runtimeconfig.json
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.runtimeconfig.dev.json
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.dll
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\bin\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.pdb
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.csprojAssemblyReference.cache
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.csproj.CoreCompileInputs.cache
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.AssemblyInfoInputs.cache
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.AssemblyInfo.cs
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.dll
+F:\o\Jogos\Outros\Meus Projetos\Sistemas\Projeto Financas\obj\Debug\netcoreapp2.1\Senai.Projeto.Financeiro.pdb
