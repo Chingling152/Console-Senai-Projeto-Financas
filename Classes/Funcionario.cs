@@ -7,7 +7,7 @@ namespace Senai.Projeto.Financeiro.Classes
         public double salarioBruto;
         public double salarioLiquido{
             get {
-                return new FolhaDePagamento().SalarioLiquido(this);
+                return FolhaDePagamento.SalarioLiquido(this);
             }
         }
     }

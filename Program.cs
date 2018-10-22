@@ -11,77 +11,75 @@ namespace Senai.Projeto.Financeiro
             Console.OutputEncoding = Encoding.UTF8;
 
             sbyte escolha = 0;
-            FolhaDePagamento folha = new FolhaDePagamento();
 
             const int tamanhoDataBase = 1001;
-            folha.funcionarios = new Funcionario[tamanhoDataBase];
-            MensagemSucesso("Projeto Finanças");
+            FolhaDePagamento.funcionarios = new Funcionario[tamanhoDataBase];
+            Relatorio.MensagemSucesso("Projeto Finanças");
                   
             do{
                 Console.WriteLine("");
-                TextDecoration("O Que deseja fazer?");
-                Console.WriteLine($"\n1- Cadastrar um Funcionario\n2- Exibir Folha De Pagamento\n3- Exibir total de custos bruto da folha de pagamento\n4- Alterar o salario de um funcionario\n5- Exibir total de custos liquido da folha de pagamento\n6- Ver maior salario\n7- Ver menor salario\n8- Alterar cadastro\n9- Remover cadastro\n0 - Sair\n10- Criar DataBase (Aleatorio)\n");
+                Relatorio.TextDecoration("O Que deseja fazer?");
+                Console.WriteLine($"\n1- Cadastrar um Funcionario\n2- Exibir Folha De Pagamento\n3- Exibir total de custos bruto da folha de pagamento\n4- Aumentar o salario de um funcionario\n5- Exibir total de custos liquido da folha de pagamento\n6- Ver maior salario\n7- Ver menor salario\n8- Alterar cadastro\n9- Remover cadastro\n0 - Sair\n10- Criar DataBase (Aleatorio)\n11- Listar funcionarios\n");
                 sbyte.TryParse(Console.ReadLine().ToString(),out escolha);
                 int id = 0;
 
                 switch(escolha){
                     case 1://   Cadastrar funcionario   //
                         for(int i = 0 ; i < tamanhoDataBase-1;i++){
-                            if(folha.funcionarios[i] == null){
-                                folha.funcionarios[i] = new Funcionario();
-                                folha.CadastrarFuncionario(i);
+                            if(FolhaDePagamento.funcionarios[i] == null){
+                                FolhaDePagamento.funcionarios[i] = new Funcionario();
+                                FolhaDePagamento.CadastrarFuncionario(i);
                                 break;
                             }
                         }
                         break;
                     case 2://   Exibir folha de pagamento   //
-                        TextDecoration("Digite o numero de identificação do funcionario");
+                        Relatorio.TextDecoration("Digite o numero de identificação do funcionario");
                         int.TryParse(Console.ReadLine(),out id);
-                        if(folha.funcionarios[id] != null){
-                            folha.MostrarFolhaDePagamento(id);
+                        if(FolhaDePagamento.funcionarios[id] != null){
+                            FolhaDePagamento.MostrarFolhaDePagamento(id);
                         }else{
-                            folha.FuncionarioNaoEncontrado(id);
+                            Relatorio.FuncionarioNaoEncontrado(id);
                         }
                         break;
                     case 3://   Exibir total de custos bruto    //
-                        folha.TotalCustosBruto();
+                        FolhaDePagamento.TotalCustosBruto();
                         break;
                     case 4://   Aumentar Salario de um funcionario  //
-                        TextDecoration("Informe o numero de identificação do funcionario no qual você quer alterar o salario");
+                        Relatorio.TextDecoration("Informe o numero de identificação do funcionario no qual você quer aumentar o salario");
                         int.TryParse(Console.ReadLine(),out id);
                         if(id < 1001 && id >= 0){
-                            if(folha.funcionarios[id] != null){
-                                folha.AlterarSalario(id);
+                            if(FolhaDePagamento.funcionarios[id] != null){
+                                FolhaDePagamento.AumentarSalario(id);
                             }else{
-                                folha.FuncionarioNaoEncontrado(id);                                
+                                Relatorio.FuncionarioNaoEncontrado(id);                                
                             }
                         }else{
-                            TextDecoration($"O valor inserido ({id}) não está dentro dos limites do banco de dados");
+                            Relatorio.TextDecoration($"O valor inserido ({id}) não está dentro dos limites do banco de dados");
                         }
                         break;
                     case 5://   Exibir total de custos liquido da folha de pagamento    //
-                        folha.TotalCustosLiquido();
+                        FolhaDePagamento.TotalCustosLiquido();
                         break;
                     case 6://   Ver maior salario   //
-                        folha.MaiorSalario();
+                        FolhaDePagamento.MaiorSalario();
                         break;
                     case 7://   Ver menor salario   //
-                        folha.MenorSalario();
+                        FolhaDePagamento.MenorSalario();
                         break;
                     case 8://   Alterar cadastro    //
                         Console.WriteLine("Digite o ID do funcionario que você quer alterar");
                         int.TryParse(Console.ReadLine(),out id);
                         if(id < tamanhoDataBase && id >= 0){
-                            if(folha.funcionarios[id] != null){
-                                folha.AlterarCadastro(id);
+                            if(FolhaDePagamento.funcionarios[id] != null){
+                                FolhaDePagamento.AlterarCadastro(id);
                             }else{
-                                TextDecoration($"Não existe nenhum funcionario cadastrado no ID {id}.");
+                                Relatorio.TextDecoration($"Não existe nenhum funcionario cadastrado no ID {id}.");
                                 Console.WriteLine("\nDeseja cadastar um funcionario nesse ID?\n1- Sim\n2- Não");
                                 sbyte.TryParse(Console.ReadLine(),out sbyte esc);
-
                                 switch (esc){
                                     case 1:
-                                        folha.CadastrarFuncionario(id);
+                                        FolhaDePagamento.CadastrarFuncionario(id);
                                         break;
                                     default:
                                         //porra nenhuma acontece ;-;
@@ -89,59 +87,63 @@ namespace Senai.Projeto.Financeiro
                                 }
                             }
                         }else{
-                            TextDecoration($"O valor inserido ({id}) não está dentro dos limites do banco de dados");
+                            Relatorio.TextDecoration($"O valor inserido ({id}) não está dentro dos limites do banco de dados");
                         }
                         break;
                     case 9://   Remover cadastro    //
                         Console.WriteLine("Digite o ID do funcionario que você quer remover");
                         int.TryParse(Console.ReadLine(),out id);
                         if(id < tamanhoDataBase && id >= 0){
-                            if(folha.funcionarios[id] != null){
-                                Console.WriteLine($"\nDeseja mesmo excluir o Funcionario {folha.funcionarios[id].nome} no indice {id}?\n1- Sim\n2- Não");
+                            if(FolhaDePagamento.funcionarios[id] != null){
+                                Console.WriteLine($"\nDeseja mesmo excluir o Funcionario {FolhaDePagamento.funcionarios[id].nome} no indice {id}?\n1- Sim\n2- Não");
                                 sbyte.TryParse(Console.ReadLine(),out sbyte esc);
-
                                 switch (esc){
                                     case 1:                                       
-                                        MensagemSucesso($"Funcionario {folha.funcionarios[id].nome} removido com sucesso");
-                                        folha.funcionarios[id] = null;
+                                        Relatorio.MensagemSucesso($"Funcionario {FolhaDePagamento.funcionarios[id].nome} removido com sucesso");
+                                        FolhaDePagamento.funcionarios[id] = null;
                                         break;
                                     default:
                                         //porra nenhuma acontece ;-;
                                         break;
                                 }
                             }else{
-                                TextDecoration($"Não há funcionario no indice {id}.");
+                                Relatorio.TextDecoration($"Não há funcionario no indice {id}.");
                             }
                         }else{
-                            TextDecoration($"O valor inserido ({id}) não está dentro dos limites do banco de dados");
+                            Relatorio.TextDecoration($"O valor inserido ({id}) não está dentro dos limites do banco de dados");
                         }
                         break;
                     case 10:// Gerar funcionarios aleatorio //
-                        TextDecoration($"Insira a quantidade de funcionarios");
+                        Relatorio.TextDecoration($"Insira a quantidade de funcionarios");
                         Console.WriteLine($"um numero entre 1 e {tamanhoDataBase}");
                         int.TryParse(Console.ReadLine(),out int valor);    
 
-                        folha.funcionarios = new Funcionario[tamanhoDataBase];   
+                        FolhaDePagamento.funcionarios = new Funcionario[tamanhoDataBase];   
                         
                         if(valor < tamanhoDataBase && valor > 0){
                             for(int i = 0 ; i < valor;i++){
-                                folha.GerarDataBase(i);
+                                FolhaDePagamento.GerarDataBase(i);
                             }
                         }else{
-                            TextDecoration("O numero inserido não é valido.");
+                            Relatorio.TextDecoration("O numero inserido não é valido.");
+                        }
+                        break;
+                    case 11://  Listar Funcionario  //
+                        foreach(Funcionario item in FolhaDePagamento.funcionarios){
+                            if(item!= null){
+                                Console.WriteLine($"ID : {item.id} , Nome : {item.nome} , Salario R${item.salarioBruto}");
+                            }
                         }
                         break;
                     case 12:
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        EasterEgg();
-                        Console.WriteLine("Você Supostamente não devia estar aqui ;-;");
+                        Relatorio.EasterEgg();
                         break;
                     case 0://   Sair     //
                         Console.WriteLine("Aperte qualquer tecla para sair");
                         break;
                     default://  Exceção //
                         escolha = 1;
-                        TextDecoration("Você deve escolhe qualquer uma dessas escolhas numeradas");
+                        Relatorio.TextDecoration("Você deve escolhe qualquer uma dessas escolhas numeradas");
                         continue;
                 }
                 if(escolha != 0){
@@ -150,135 +152,8 @@ namespace Senai.Projeto.Financeiro
                 }
             }while(escolha != 0);
             Console.ReadKey();
-        }
-        
-        /// <summary>
-        /// Apenas decora o texto com =  
-        /// Exemplo : ======| Texto |======.
-        /// </summary>
-        /// <param name="t">Texto no qual ficará entra os "|"</param>
-        public static void TextDecoration(string t){
-            Console.WriteLine($"======| {t} |======");      
-        }
-        /// <summary>
-        /// Cria linhas com = em cima e abaixo do texto selecionado , Alem de deixar | antes e depois da mensagem.  
-        /// </summary>
-        /// <param name="mensagemSucesso">Texto no qual ficará entra os "|"</param>
-        public static void MensagemSucesso(string mensagemSucesso){
-            Console.WriteLine($"{new string('=',mensagemSucesso.Length+2)}\n|{mensagemSucesso}|\n{new string('=',mensagemSucesso.Length+2)}");
-        }
+        }       
 
-        static void EasterEgg(){
-            Console.OutputEncoding = Encoding.ASCII;
-            Console.WriteLine(@"
-                ;,,,,,,;+'''''+;'+++#+++++++++++++++++++++++++++++++++'++++:,..........:+'''''';',,,++'''+''+;+++;+''+++''+
-                '',:,,.,+''+''+;'+++'++++''+++++++++++++++++++++++++++++++''+++':,....;''+,.,..,,,.,'+''''''+'+;++'+++'''++
-                ''',,,:,++''''+''+++'+'++''+++++++++++''+++++++++++++++++'''''+'''++''+'+++,:.,:;;,:'+''''''+';++'++'''++++
-                '''',,::+,:'''+++'+'+''+++'++++++++++++++++++++++++++++++++++++'+'''++++#;',..`.;;:,++';'+''''+'++++'++++++
-                +'''',:,'';;''++++++'++++'+++++++++++++++++++++++++++++++++++++++++''++++'+.,```.;:,'+';;'';#''++''++++++++
-                +++++'::+';'''+'++''++'+++'++++++++++++++++++++++++++++++++'++++++++++'+''+'+.`;`;:,+++''''+'++'';#++++++++
-                ++++++:,++'''+'++'++''++++'+++'++''+'++++++++++'''+''+++++++++++++++++++++++''.,.;;;+''';'+'+++'+++++++++'+
-                ++++++;:+;''''''+++'++++++'+++++''++'++++++++''''++''++++++++++++++++++++++'++';,;:,''''';++'''+#++++'''+++
-                ++++',::;'''+'++++'++++++++++'+'++++'''++++'''''+++''++'+++'++'+++++++++++''++'++;,,';+''++''#+++++'''+++++
-                ++++';;:+'''++'+++++++++++++++'''+'''''+++''''''+'+++'''++++++++++++++++++++++++''::'+'++''+++++++''+++++++
-                +++'+;:'''##+++'++++'++++++++''''+'''''+''''''''+'++''''++++''++++++++++++'++++''+;'+'+''++++++++'+++++++++
-                ++++';;;';+++++++++++++++++++''''''''''''''''''+++++'''''+''''++''+'''+++++++++++++'#+';+++++++'+++++++++++
-                +'+'';:;;#'+''++++++++++++++'''''''''''''''''''+++++'''''''''''+''+'''++++++++++'++++'#+++++'''++++++++++++
-                +'''';;;+'+++++++++++++++++''''''''''''''+'''''++'++''''''''''''''+''+++'''+++++'++++#+++''''++++++++++++++
-                +''''';''++++'+++++++++++++''''''''''''+++++'''''+'''''''''''''''+''++++++++++++'+++'#+''''++++++++++++++++
-                '''''';'++'++++++++++++++++'''''''''''++'+++'''''+'''''''''''''''+''++++'''++++++++++'#''++++++++++++++++++
-                '';++''+++++++++++++++++'+''''''''+''++++++++''''+''+''''''''''''+'''+++++++++++++++++'#+++++++++++++++++++
-                '';+++'+'++++++++++++++++++'++'''++++++++++++''''++'+++''''''''''+''+++++++++++++++++++#+++++'+++++++++++++
-                '';++'++++#++++++++++++++++++++'+++'+++++++++++'++++'++''''++''''+++'++++++++++++++++++'#+'++++++++++++++++
-                '';++++++++++'+++++++++++++++++++++++++++++'+'++++++++++''+'+++++++++++++++++'+++++++++++#++++++++++++++++'
-                '';'''+++#+++'++++++++++++++++++++++++++++++'+++++++++++++'++'+++++++++++++++++++++++++++++++++++++++++++++
-                '';'+'++#+++++++++++++++'++++++++++++++++++++++++++++++++'++++++++++++++'++++++'++++++++++#++++++++++++++++
-                '';'++++#++++'+++++++++'''''+''''+++++++'++++++++++++++++++++++++++++++++++++++++++++'+++++++++++++';++++++
-                '';'''+++++++++++++++++++''++'''++++++''++++++'+++++++++++++++++++++++++++++++++++'++'++'++#++'+;;;;;#+++++
-                '''++++#++++'++++++'++''+++++'++++++++++++++++++++++++++++++++++'++++'++'+++++++++++++'+'+++++++;;;;+++++++
-                ;;''++++++++'+++++++++++++++++'++++++++++++#++++++++++++++++++++'++++++++++++++++++++''++'''#+++;;;;+++++++
-                ;;'+++#+++++'+++++'+++++++++++'++++#+'++++++++++'+++++++++++++++++++++++++++++++++++++++'+++#+#+:::;+++++++
-                ';++++#++++++++++++++#++++++++++++++'+++++++'++'++++++++++++++++++++++++++++++++++++++++'++++#++;;;;+++++++
-                ''+++++++++++++++++++#++++++'+++++++++++++#+'+++++'++++++++'++++++++++++'++++++++++++++++'+''#+#:;;;+++++++
-                ''+++#++++++++++++++++++++#+''++++++++++++++++++++++++++++''++++++++++++'++++++++++++++++'+++#+#:;:;#++++++
-                ''''+#++++++++++++++++++++#++++++++++++++#++''++++'+++++++++++++++++++++'++++++++++++++++++++#++:;:;#++++++
-                '';++#++++++++#+++++#+++++#++++++++++++++++++++++'+++#++++++++++++++++++'+++++++++++++++++'++#+#:;;;#++++++
-                '';'++++++++++#+++++#+++++#+++++#+++++++#+++'++++++++':+++++++'++++++++++++++++++++++++++++++#+;;;:;+++++++
-                '';+++++++++++#+++++#+++++++++++#+++++++#++++++#+++++':+++++++'++++++++++++++++++++++++++++++#+;;;:;+++++++
-                ;';+++++++++++#+++++#++++++#++++#+++++++#++++++#+++++;,#+++++++++++++++++++++++++++++++++++++#+::;:;+++++++
-                '';;#+++++++++#+++++#++++++#+####++++++++++++++#+++++..'+++####++++++++'+++++++++++++++++++++#+:;::;+++++++
-                '';:;+++++++++#+++++#+++++++#+++###++++#+++++++#+++++.`,+#++++##+++++++++++++++++++++++++++++#+::;:;+#+++++
-                '';;;+++++++++#+++++++++++++#+++#+#++++#+++++++#+++++..,#++++++#+++++++++++++++++++++++++++++#++''+++++++++
-                ;';;;+++++++++#++++++#++++++''++#++++++#+++++++#+++++``,+++++++#+++#+++++++++++++++++++++++++#+;:++++++++++
-                ;';:;+++++#+++#++++++#++++++;,#+#++++++#+++++++#+++++..,.'+++++#+++#++++++++++++++++++++++++#++;;++++++++++
-                ;';:;+++++#+++#+++++++#+++++..`+#++++++#++++++++;++++...`.#++++#+++#++++++++++++++++++++++++#++::++++++++++
-                ;';::+++++#+++++++++++++++++...``:+++++#+++++++'.+#+#:.,,`.++++#+++#++++++++++++++++++++++++#++:;#+++++++++
-                ;';:;;++++#++++#++++++#+++++..,..,+++++#++++++#'.+++#'...,.,#+++#++#+++++++++++++++++++++++#+++';'+++++++++
-                ;';:;:++++#++++#+++++++#++++,.``.`:+++++++++++++..#++'`., ,..#'##++++++++++++++++++++++++++#'++'+++++++++++
-                ;';:;:'+++#+++++#++++++#+++#;```..`++++++++++++'.`,#+'.```,.``:##++++++++++++++++++++++++++++++++++++++++++
-                '';::;:+++#+++++#++++++#'++++`..`.,.#+++#+++++++..`.++'.`.`.`...`+++#++++++++++++++++++++++++++++++++++++++
-                '';:;::'++#++++++#+++++#+.++'..`..`. '++#+++++++.`..`##```````.`.,++##++++++++++++++++++++#++++++++++++++++
-                '';:::::#++#++++++#+++++'..+#,.,````,`.+#+++++++`..,..`````````.`.;+##++++++++++++++++++++#'+++++#+++++++#+
-                ';;::::::#+#+++++++++++++,`.````.````..``:++++++;......`````````...+++++++#++++++++++++++#+''++++#+++'#+'#+
-                ';;;:::::+###++++++++#++#'`..`````````,.`.;+++++'...`,``````.`````.`#+''++#++++++++++++++#''+++++#++++#+#'+
-                ';;:::::;+;';+++++++++####;..`````````.....+++++'.``.`.`.`` `````..`.#'#++#+++++++++++++#+''++++++++++++##+
-                ';;::::::+';;++++++++++++,``````` ```````..`''+++'....  ``````````..`...#+++++++++++++++#+;'+++++++++++++++
-                ';;::::::+'';:+++++++++++'``````````````..```,#++#:.``` ``````````..`.`.+#+#+++++++++++#'+;;++++++'++++++++
-                ;;;::::::+;;;';+++++++++'+````````````````````` ```````.```.```````..`..:#++#+++#++++++;:+:'+++++;'++++++++
-                ';;::::::+;';:;;++++++++++;```+@'`````.,. `````````````````````  ,+,..`,.'+##+#+``+++++':+''''+++++++++++++
-                ';;::::::+;;':::'+++++++++'.` `@@@@@@@@#``````````````'@@@@@@@@@@@@+... ,.#+##'`..,#+++##+'':'++++++++++;;+
-                ';;::::::'';:;::'++++++++++. ``.#@@@@@#,.```..````````.#@@@@@@@@@#;.`..`.+++#;....`#++###+;';+++++++++#+;':
-                ';;::::::+'';::;;''++++++++'```.`;@@#:``.`,,`..`.````` `'@@@@@@@#,`...`.:+++'..,+..:+++';'++''+++++;#+#+:;+
-                ';;::::::';;;;:;;'';#'++++#+````.`````.`..``.`.`...``.``.`.#@@+...`,``.,#+++'.;....,++++;+'':+++'++;'++,+'+
-                ;;;:;::::+;;;:;::;';+,''''#'````````````.``````````````````.````.```...,+++''+.,'...+++;;'++;+++`.+''+++#:+
-                ';;:;::::+;''::;,;':+:;'''#'```````````,'```````````````````.``` `.`....+++++`..+...+++#++'+'++`+++':'':,++
-                ;;;:;::::'++;';,:;',+,';'+#'````.``````,'.````````````````````````..,...+++#'`.,..,:+#';;+++:';+;''';+.+,++
-                ;;;:;::::'+';;;`:;':+,';'##' `````````````````````````````````````.:`. ,++++,`,'..,+++;';+++;';;':+:;':+'+'
-                ;;;:;::::'+';';.::',+,;''+++````````````````````````````````````.`..,.,`'++',:',.,+##::;'+'+'+;''':'+';+++'
-                ;;;:;::::+''';;:::;,+,+++++:``````````````````````````````````````.,`.`.:++'````.:+++'''+'+'''++';;''+:++'+
-                ;;;:;::;;''+;;:;::;,+,+++##:`````````````````````````````````````..`,,...++;...,,++#''''''''''+:'#++'+;'+'+
-                ;;;:;::;;''';;:;::;:+,+'+##'`````````````````````````````````````..`.,..,++:....+++':'''''''''+''++++++'''+
-                ;;;:;:::;'+''':'::':+,;;:;#+````````````````````````````````````````....:##+,.++++;:'':;;;'''''''+#+#+#'++'
-                ;;;:;:::;''+;;::,:'',,,,::##:`````````````,`..`````````.````````.`,,.`.,####++'++;;;:;;'::'';''+'++#++++'++
-                ;;;:::::;''+'';;::::::,,,,##'.``````````````````.````````````````....,.:+#+++++#;;;;;;:::',;;;'+';#++++#'''
-                ;;;:::::;''''';:,:::,,,,,,++##.`````````````````````````````````.`,``.:++++++++;;::;;;;;;::'::';++#+++++'''
-                ;;;:::::;''';';:,::,,,,,,,;:';#.`````````````````````````````````,`..:++++++++:``;;;;;;;;;:::'::#++++++++''
-                ';':::::;'';''';,,,:,,,:.,:::::+'```````````````` ``.```````````....#+++++++;::::.,:`:::;;;;:::;++++++++#+'
-                ;;':::::;''+;''',,:,:,:,,,:::::;:: ````````````````.``````````.`.`'+++++#+:::::::,.`;..;::;;;;'#++++++++++'
-                ;;':;:::;''+'+';::::.',,,,;::::,::@:```````````````````````````:+,;++++##':::::::;;'``;`.;;;++++++++++++++#
-                ;;;:;::;;+;+'''';;:,,::,,,:::::::::,'```````````````````````,+....,++++++++:::::::::;,.,:,:++++++++++++++++
-                ;;;:;:::;+''';':'::,,:,,,,::::::::::,#+ ``````````````.` ,+:...,.,,+++++++#':::::::::::``;++++++##+++++++#'
-                ;;;:;:::;++'+''';;,,,,,,,,;:::::::::,`,'#.```````````.;#,`.,.......+++++++++::::::::::;''+++++++#;#++++#';;
-                ';;:;;:::'+++++';'+.,..::,;::::::::;..::`.++.   .'#;,...........,..#+++++++#++###:::;++++++++++'#;;;;;;;:;;
-                ';;:;;;'''+++'';';',,,,.:,::::::::::``,:.`::::::+,.,...........,.,.;++++++++++++++;;+++++++++++#;;;;;;;;;;:
-                ';;:;''''++'++'+;+':,,.:,,;:::::;:;:;:::`.,,::::;,.,.....`..,.`....,+++++++++++++++#+++++++###+`;`.;;;;;;;;
-                '';:;'''+'''+'+++#',;`,:,,::::::;;;:::::``::::::;.,....,.,.....,....#+++++++++++++##++++++++#+'.`::.`;;;;;;
-                ';;:;'''+'+';+'+'';,;:.,,,:;:;#;`   .''':,:,;++++.,.`..,......,.....,++++++++++#@@#+.`.:#+++#:::,.`;,..';;;
-                ';;;;'''+'++'+';;;;:,.:,::;;+`````.`.'##++#.````,,..``...............:####+##@@@@@#.....,.:#;:::;;.,,:..;;;
-                ';;:;''''++++'';;;;;;,::.'#:````````;#+''#:```.`.'`...``..........,..,......#@@@@@',,,.....,,+:::;::``::..;
-                ';':;'''''+'++'';;:;`.,,,'`````````,##+'#'`.`````'``````,.....`....,..,....'@@@@@+`,..........;;;;:;;`.`;,.
-                ';';;;''+';;++:;';,,:,,,; `````````+#+++'.```````:`````.,.....`.......`,..;@@@@@#;...,.........,;;;;;;:`.:;
-                ';';;;'''++';;'';;,.,:;+`..````.``,#++'#+...`````,`.```.,.....,..,..'`,`.,@@@#@@+.....,,..,......:;:;;;;,.`
-                ';';;;''''';;:;;:;,`,:+`````````..+#''#'`::.````.`.````....,...,.,#..`.,.#@@@@@#'....,...........:;;;;;;;;.
-                ''';;;'++'';:::;;;.,`:`.`````````,##+'#:`..+`````.`....,.....`;#: ..,`.,:@@@@@@#,....,...........:+;;:;;;:;
-                ''';;;'''''':::;;;,,.``.```.```.`'+++''`...`,``````........'',`.``.`...,#@@@@@@+..,........,....,,,:;;;;;;;
-                ''':';'+;;';::;'';,+ .``````````.@#++#'`````````.```..`.':````````.....;###@@@@;,,....,.......`,.,.+;;;;;;;
-                ''';';+++++;::;'''+:.``..``.``.`,##+'#;.```````.``...,,.`````.``````..,#@++@@@#,`..,..,,,,....,.,..:;:;;;;;
-                ''''';'++'';:;'';:`.``````````..'+'''..'```.``.`.``.`....`.``.`````...;++++@@@+......,....,....,..,,;;;;;;;
-                '';;''++''+;;:;':' ```...``.```.##'+##:`;..``.`.`.`..`.````.```````.,:##+'+@@@',.........,.,.,.,...,#;;;;;;
-                '';;'''+''+':'',:,````````....,,+#'#@'`+`.'`````.``...`.``..``...`...:#+'++@@#:,...........,.,.,,...,;;;;;;
-                ''''';;;''+++;;'`.```````...`,.;+';``'``,:`:.``````.````.`.``````.`.,@#''++@@#.,.....,.,.....,.,.,..,;;;;;;
-                '''';';'''';;:'+``.`````...,.'.##+'+`..+``'..' ```.```.`..```````..`;#+''+#@@'....,..,.,,,,...,.....,;;;;;;
-                ';;:::;;;;';:;''` ``````.....,+@@#'+#'.`:'`.'`,:`...,,``..``.``````,##++++#@@'.........,....,.....,.,+;;;;;
-                '':;,':'';';:;```````.`......,#++''++++#`.:;`::.',',.,.``.```..``..:#++'++#@#:,.,...,,.......,..,....';;;;;
-                ;;;;';':;;;;;+,`.````...,...:#+++'+++#+`.+`.;:.',,+.,..``...``..``:##++++#@@+..,..,.......,,...,.,,,.;;;;;;
-                ''::;;;;::;,;`` .````.`..`.:#+''''''+++'.`.'``'.:+.:,..``````.````'#++'+###@+.`.,,.........,....,...,,;:;;;
-                ';::;:::;:::;`..``````....,#+''''+'++'#+#```.';.,`,,:'''' ```.```;#+'''+#@@@'...........,............,;;;;;
-                ::::;:::::,''`..``````...,#+'+++'+'++'++##:,'`.`.``````.`:``````++#+''+#@@@@'......................,.,;;;;;
-                :::;:;::;,:,```````````.:#+'''''++''+''++#'`..`````.``````,  ..#+#''+'++@@@#'.....,.,................::;;;;
-                :::;:;;:;:;,.`..`````...#+''++++'++'+'##;.`.``...``.`````..'.+#+#++'+'+#@@@#'.....,..,.,,.,,...,.....,;;;;;
-                ::;:::;:..`..``````````''''''''''+'++` .`````.`,````:#;'`...;#+#++'+'+++@@@#'...,.,:......,....,.....,';;;;
-                ");
-        }
+        
     }
 }
